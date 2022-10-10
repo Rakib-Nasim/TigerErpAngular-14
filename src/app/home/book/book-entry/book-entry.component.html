@@ -1,0 +1,99 @@
+<div class="container" style="background-color:#F2F2F2 ;">
+<div class="card" style="border:none;margin-left:5%;margin-right: 5%;background-color:#F2F2F2">
+    <h4 class="card-header text-center p-1 pt-4 pb-4" style="border:none;background-color:#F2F2F2">Book Entry</h4>
+     <div class="card-body "style="margin-left:10%;margin-right:10%" >
+                <form [formGroup]="bookEntryForm" >
+                    <div class="form-group row mb-3" >
+                        <label for="catagory" class="col-md-3">Category <span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                            <div style="background-color:white ! important"> 
+                                <ng-multiselect-dropdown formControlName="categoryList" [placeholder]="'Select Category'" [settings]="dropdownSettings"
+                                    [data]="categories" [(ngModel)]="categoryItems" (onSelect)="selectOneAll($event)" (onSelectAll)="selectAll($event)">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-3">
+                        <label for="name" class=" col-md-3 ">Title<span class="text-danger">*</span></label>
+                        <div class="col-md-8">
+                            <input formControlName="titel" type="text" class="form-control" placeholder="Enter Book Title">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Code" class="col-md-3">ISBN Code</label>
+                        <div class="col-md-8">
+                            <input formControlName="iSBN" type="text" class="form-control" placeholder="Enter ISBN Code">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="description" class=" col-md-3 ">Description</label>
+                        <div class="col-md-8">
+                            <textarea  formControlName="description" type="text-area" class="form-control" placeholder="Enter Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="model" class="col-md-3 ">Author</label>
+                        <div class="col-md-8">
+                            <div style="background-color:white ! important">
+                                <ng-multiselect-dropdown [(ngModel)]="authorItems" formControlName="authorList" [placeholder]="'Select Author'"
+                                [settings]="dropdownSettings" [data]="authors">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-3">
+                        <label for="model" class="col-md-3">Country</label>
+                        <div class="col-md-8">
+                          <ng-select  formControlName="country"
+                          [items]="statuslist" bindLabel="name"
+                           bindValue="id" placeholder="Select Your Country"></ng-select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row mb-3">
+                        <label for="brand" class="col-md-3">Publisher</label>
+                        <div class="col-md-8">
+                            <div style="background-color:white ! important">
+                                <ng-multiselect-dropdown [(ngModel)]="publisherItems" formControlName="publisherList" [placeholder]="'Select Publisher'" 
+                                [settings]="dropdownSettings" [data]="publishers">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="costPrice" class=" col-md-3 ">Price</label>
+                        <div class="col-md-8">
+                            <input formControlName="price" type="number" class="form-control" placeholder="00.00">
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-3">
+                        <label for="salesPrice" class=" col-md-3 ">Re-order Level</label>
+                        <div class="col-md-8">
+                            <input formControlName="order" type="number" class="form-control" placeholder="00.00">
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-3">
+                        <label class="form-group col-md-3"> Status<i >*</i> </label>
+                        <div class="col-md-8 ">
+                            <ng-select formControlName="status"  [items]="statuslist" bindLabel="name" bindValue="id"  [placeholder]="'Select Status'"></ng-select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                      
+                        <div class="col-md-9 mt-4" >
+                          <button type="submit" class="btn btn-success ml-2" style="padding-left:5%; padding-right:5%"> Save</button>
+                          <button type="reset" class="btn btn-info" style="padding-left:5%; padding-right:5%;margin-left: 1%;">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
