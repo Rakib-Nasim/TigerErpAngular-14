@@ -1,1 +1,71 @@
-<p>category-entry works!</p>
+<div class="row" style="margin-left:6%;margin-right:5%">
+    <div class="card col-md-6 text-center" style="border:none">
+        <form [formGroup]="categoryEntryForm">
+            <div class="card-header text-center pt-4 pb-4" style="border:none ;background-color:#F2F2F2 ">
+                <h3>Publisher Entry</h3>
+            </div>
+            <div class="card-body" style="background-color:#F2F2F2">
+                <div class="row form-group">
+                    <div class="col-md-3 text-start">
+                        <Label>Under Group</Label>
+                    </div>
+                    <div class="col-md-8">
+                       <ng-select  formControlName="parentId" [items]="categories" 
+                            bindLabel="name" bindValue="id"
+                            placeholder="Select Group">
+                       </ng-select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-3 text-start">
+                        <Label>Category Name</Label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="categoryName" type="text">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3 text-start">
+                        <Label>Discription</Label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="description" type="text">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3 text-start">
+                        <Label>Type</Label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="productType" type="text">
+                    </div>
+                </div>
+                <div class="row mt-2 text-start">
+                    <div class="col-md-3 text-start">
+                        <Label>Status</Label>
+                    </div>
+                    <div class="col-md-8">
+                        <input formControlName="isProduction" type="checkbox">
+                    </div>
+                </div>
+                <div class="row mt-4 ">
+                    <div class="col-md-3 ">
+                    </div>
+                    <div class="col-md-8 text-start">
+                        <button class="btn btn-success"      style="padding-left:8%;padding-right:8%;"> Save</button>
+                        <button class="btn btn-primary" style="margin-left:1%; padding-left:8%;padding-right:8%;">
+                            Reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-center">
+        <div class="card" style="background-color:#F2F2F2;border:none;">
+            <div class="card-header" style="border:none;background-color:#F2F2F2 ">
+                <h3> List of Publisher</h3>
+            </div>
+        </div>
+    </div>
+</div>
