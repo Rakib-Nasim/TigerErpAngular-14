@@ -1,26 +1,28 @@
-
-<div class="container" >
+<div class="container">
     <div class="row ">
 
         <div class="col-md-3">
-            <button class="btn btn-success" (click)="openModalForSave(modalForSave)" style="padding-left:8%;padding-right:8%; background-color: #256D85;"> <i class="fa-solid fa-plus"></i> Add </button>
+            <button class="btn btn-success" (click)="openModalForSave(modalForSave)"
+                style="padding-left:8%;padding-right:8%; background-color: #256D85;"> <i class="fa-solid fa-plus"></i>
+                Add </button>
 
         </div>
         <div class="col-md-2">
-            <button class="btn btn-success" (click)="tableListPdfView()"> <i class="fa-regular fa-eye"></i> Pdf View </button>
+            <button class="btn btn-success" (click)="tableListPdfView()"> <i class="fa-regular fa-eye"></i> Pdf View
+            </button>
 
         </div>
         <div class="col-md-7">
             <div class="input-group">
-                <input id="house" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                    placeholder="search Name, description">
+                <input id="house" class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                    autocomplete="off" placeholder="search Name, description">
             </div>
         </div>
-        
+
     </div>
 
     <hr>
-    <div  #tableListPdf class="tableListPdf" style="max-height: 450px; overflow:scroll;width: 100%;">
+    <div #tableListPdf class="tableListPdf" style="max-height: 450px; overflow:scroll;width: 100%;">
         <table id="example" class="table table-striped" style="width: 100%;">
             <thead>
                 <tr>
@@ -34,23 +36,28 @@
                 <tr *ngFor="let brand of lstbrandModel | filter:searchText">
                     <td>{{brand.brandName}}</td>
                     <td>{{brand.description}}</td>
-                    <td><span class="text-success" *ngIf="brand.status===1"> <i class="fa fa-check" aria-hidden="true"></i> Active</span>
-                        <span class="text-danger" *ngIf="brand.status===2"> <i class="fa fa-times" aria-hidden="true"></i> Deactived</span>
+                    <td><span class="text-success" *ngIf="brand.status===1"> <i class="fa fa-check"
+                                aria-hidden="true"></i> Active</span>
+                        <span class="text-danger" *ngIf="brand.status===2"> <i class="fa fa-times"
+                                aria-hidden="true"></i> Deactived</span>
                     </td>
                     <td>
                         <div class="row">
                             <div class="col-sm-2">
-                            <button class="btn btn-sm btn-info" (click)="editProductById(brand.id,modalForSave)"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-sm btn-info" (click)="editProductById(brand.id,modalForSave)"><i
+                                        class="fa-solid fa-pen-to-square"></i></button>
                             </div>
                             <div class="col-sm-2">
-                            <button class="btn btn-sm btn-danger" (click)="delete(brand.id, deleteModal)"><i class="fa-solid fa-trash"></i></button>
+                                <button class="btn btn-sm btn-danger" (click)="delete(brand.id, deleteModal)"><i
+                                        class="fa-solid fa-trash"></i></button>
                             </div>
                             <div class="col-sm-2">
-                            <button class="btn btn-sm btn-success"  (mouseover)="changeById(brand.id)" (click)="viewPrint(brand.id)"><i class="fa-regular fa-eye"></i></button>
+                                <button class="btn btn-sm btn-success" (mouseover)="changeById(brand.id)"
+                                    (click)="viewPrint(brand.id)"><i class="fa-regular fa-eye"></i></button>
                             </div>
                         </div>
                     </td>
-        
+
             </tbody>
         </table>
     </div>
@@ -81,7 +88,7 @@
     </table>
 </div>
 <ng-template #modalForSave>
-    <div class="row" >
+    <div class="row">
         <div class="card  text-center" style="border:none">
             <form [formGroup]="publisherEntryFrom">
                 <div class="card-header text-center pt-4 pb-4" style="border:none ;background-color:#F2F2F2 ">
@@ -109,14 +116,14 @@
                             <Label>Status</Label>
                         </div>
                         <div class="col-md-8">
-<!-- 
+                            <!-- 
                             <ng-select formControlName="status" [items]="lstStatus" bindLabel="value" bindValue="key"
                                 [placeholder]="'Select Activity'"></ng-select> -->
 
-                        <select name="Status"  class="form-control" formControlName="status">
-                            <option *ngFor="let status of lstStatus" [value]="status.key">{{status.value}}
-                            </option>
-                        </select>
+                            <select name="Status" class="form-control" formControlName="status">
+                                <option *ngFor="let status of lstStatus" [value]="status.key">{{status.value}}
+                                </option>
+                            </select>
                         </div>
                     </div>
 
@@ -126,7 +133,8 @@
                         <div class="col-md-8 text-start">
                             <button class="btn btn-success" (click)="savePublisher()"
                                 style="padding-left:8%;padding-right:8%;"> Save</button>
-                            <button class="btn btn-primary" (click)="reset()" style="margin-left:1%; padding-left:8%;padding-right:8%;">
+                            <button class="btn btn-primary" (click)="reset()"
+                                style="margin-left:1%; padding-left:8%;padding-right:8%;">
                                 Reset</button>
                             <button class="btn btn-primary" (click)="makePdf()"
                                 style="margin-left:1%; padding-left:8%;padding-right:8%;">

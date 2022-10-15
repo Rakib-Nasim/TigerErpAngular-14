@@ -6,24 +6,24 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthorService {
-  baseApiUrl: string =environment.apiUrl+'/api/color/';
-  constructor(private http:HttpClient) { }
+  baseApiUrl: string = environment.apiUrl + '/api/color/';
+  constructor(private http: HttpClient) { }
 
 
-   saveAuthor(color:any){
-    return this.http.post(this.baseApiUrl+'AddColor',color);
+  saveAuthor(color: any) {
+    return this.http.post(this.baseApiUrl + 'AddColor', color);
   }
 
-    getAllColorByComp(compId:number){
-    return this.http.get(this.baseApiUrl+'GetAllColorByComp/'+compId);
-    }
+  getAllColorByComp(compId: number) {
+    return this.http.get(this.baseApiUrl + 'GetAllColorByComp/' + compId);
+  }
 
 
-     getColorById(colorId:number){
-    return this.http.get(this.baseApiUrl+'GetColorById/'+colorId);
-    }
+  getColorById(colorId: number) {
+    return this.http.get(this.baseApiUrl + 'GetColorById/' + colorId);
+  }
 
-     deleteColor(id:number){
-      return this.http.delete(this.baseApiUrl+'deleteColor/'+id);
-    }
+  deleteColor(id: number) {
+    return this.http.delete(this.baseApiUrl + 'deleteColor/' + id);
+  }
 }

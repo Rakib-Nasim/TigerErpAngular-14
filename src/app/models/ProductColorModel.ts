@@ -1,5 +1,5 @@
 export class ProductColorModel{
-id : number=0;
+   id : number=0;
    colorNamename : string='';
    description : string='';
    sortOrder : number=0;
