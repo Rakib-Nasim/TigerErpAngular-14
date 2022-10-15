@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { BookEntryService } from 'src/app/services/book-entry.service';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-category-entry',
@@ -11,24 +11,31 @@ import { BookEntryService } from 'src/app/services/book-entry.service';
 export class CategoryEntryComponent implements OnInit {
   categoryEntryForm:FormGroup;
   compId:number=202;
-   categories:any[]=[{"id":1,"name":'Science'},
-  {"id":2,"name":"Commarce"},
-  {"id":3,"name":"Humanity"}
-];
+   
 categoryList:any[]=[];
 
   constructor( private fb:FormBuilder,
-               private bookEntry:BookEntryService          
+               private category:CategoryService,        
     ) { }
 
   ngOnInit(): void {
+    this.createForm();
     this.getAllCategory();
   }
    getAllCategory(){
-    this.bookEntry.getAllCategory(this.compId).subscribe((res:any)=>{
+    this.category.getAllCategory(this.compId).subscribe((res:any)=>{
       if (res){
         this.categoryList=res.response as any[];
         console.log("this.categoryList",this.categoryList);
+      }
+    })
+   }
+
+   saveCategory(){
+    console.log("save data",this.formVal);
+    this.category.saveCategory(this.formVal).subscribe((res:any)=>{
+      if(res){
+        console.log(this.categoryEntryForm.value);
       }
     })
    }
@@ -39,12 +46,19 @@ categoryList:any[]=[];
       id:[0,[]],
       compId:[this.compId,[]],
       categoryId:[0,[]],
-      parentId:[[]],
-      categoryName:[[]],
-      description:[[]],
-      productType:[[]],
-      isProduction:[[]],
+      parentId:[null,[]],
+      categoryName:['',[]],
+      description:['',[]],
+      productType:[0,[]],
+      isProduction:[0,[]],
     })
   }
+  get formVal(){
+    return this.categoryEntryForm.value;
+  }
+  get f(){
+    return this.categoryEntryForm.controls;
+  }
+  
 
 }

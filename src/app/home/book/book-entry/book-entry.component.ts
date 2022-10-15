@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { AuthServiceService } from './../../../services/auth-service.service';
 import { BookEntryService } from 'src/app/services/book-entry.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { IDropdownSettings, } from 'ng-multiselect-dropdown';
 
 @Component({
@@ -15,8 +15,8 @@ export class BookEntryComponent implements OnInit {
   compId:number=202;
   dropdownSettings:IDropdownSettings = {
       singleSelection: false,
-      idField: 'id',
-      textField: 'name',
+      idField: 'categoryId',
+      textField: 'categoryName',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -26,11 +26,8 @@ export class BookEntryComponent implements OnInit {
     authorItems:any[]=[];
     publisherItems:any[]=[];
     bookList:any[]=[];
-  categories:any[]=[{"id":1,"name":'Science'},
-  {"id":2,"name":"Commarce"},
-  {"id":3,"name":"Humanity"}
-];
-authors:any[]=[{"id":1,"name":'Rakib'},
+    categories:any[]=[];
+   authors:any[]=[{"id":1,"name":'Rakib'},
   {"id":2,"name":"Hasan"},
   {"id":3,"name":"Nasim"}
 ];
@@ -41,6 +38,7 @@ publishers:any[]=[{"id":1,"name":'Bd-Publisher'},
   statuslist:any[]=[{"id":1,"name":'Active'},{"id":2,"name":"InActive"}];
   constructor(
     private bookentry:BookEntryService,
+    private category:CategoryService,
     
     private fb: FormBuilder
   ) { }
@@ -48,7 +46,7 @@ publishers:any[]=[{"id":1,"name":'Bd-Publisher'},
   ngOnInit(): void {
     this.getBook();
     this.creatForm();
-    // this.getAllCategory();
+    this.getAllCategory();
   }
 
   selectOneAll(item:any){
@@ -68,15 +66,15 @@ publishers:any[]=[{"id":1,"name":'Bd-Publisher'},
     })
    }
    
-  // getAllCategory()
-  // {
-  //   this.bookentry.getAllCategory(this.compId).subscribe((res :any)=>{
-  //     if(res){
-  //       this.categories=res as any[];
-  //       console.log("categories",this.categories);
-  //     }
-  //   })
-  // }
+  getAllCategory()
+  {
+    this.category.getAllCategory(this.compId).subscribe((res :any)=>{
+      if(res){
+        this.categories=res.response as any[];
+        console.log("categories",this.categories);
+      }
+    })
+  }
  creatForm(){
   this.bookEntryForm=this.fb.group({
     id:[0,[]],
